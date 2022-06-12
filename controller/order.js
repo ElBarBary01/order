@@ -16,7 +16,7 @@ export const createOrder = async (req, res) => {
         try{
         await axios.post("https://shipping-rabbitmart-elbarbary01.vercel.app/api/shipping", { "order_id": ID, "address": details.address, "total": details.price });
         } catch(e2){console.log(e2);}
-        await axios.post("https://notification-three.vercel.app/notification/", { "orderID": ID, "address": details.address, "price": details.product.price, "product": details.product.name, "name": details.customer, "email": details.email })
+        await axios.post("https://notification-three.vercel.app/api/notification/", { "orderID": ID, "address": details.address, "price": details.product.price, "product": details.product.name, "name": details.customer, "email": details.email })
         await neworder.save();
         res.status(200).json(neworder);
     }catch (e) {
